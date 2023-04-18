@@ -1,11 +1,22 @@
 let generateRondomNumber = function(){
-    let num1 = Math.floor(Math.random()*50);
-    let num2 = Math.floor(Math.random()*50);
+    let randomNumberAnswer;
+    let num1 = Math.floor(Math.random()*100);
+    let num2 = Math.floor(Math.random()*100);
 
-    let randomNumberAnswer = num1 + num2
-    let quizQuestionText = `${num1} + ${num2} =`;
+    
+    mathOperators = ["+","-"];
+    let i = Math.floor(Math.random()*mathOperators.length);
+    
+    if(mathOperators[i] == "+"){
+        randomNumberAnswer = num1 + num2;
+    }
+    else if (mathOperators[i] == "-"){
+        randomNumberAnswer = num1 - num2;
+    }
+    
+    let quizQuestionText = `${num1} ${mathOperators[i]} ${num2} =`;
     questionElement.innerText = quizQuestionText;
-    console.log(quizQuestionText);
+    console.log(quizQuestionText,randomNumberAnswer);
 
     return randomNumberAnswer;
 }
@@ -15,10 +26,11 @@ const questionElement = document.getElementById("mathQuestion");
 let inputAnswerElement = document.getElementById("answerInput");
 let continueButton = document.getElementById("continue");
 let evaluateButton = document.getElementById("evaluate");
+let resetButton = document.getElementById("reset");
 
-let currentID;
-let isCorrect; // is the answer(input) correct
 let numOfCorrectAnsws;
+let numberOfQuestions = 10;
+let currentNumOfQuestions = 1;
 let answer;
 let result;
 
@@ -46,17 +58,27 @@ continueButton.onclick = function(){
 
 evaluateButton.onclick = function(){
     answer = inputAnswerElement.value;
-    inputAnswerElement.value = "";
+ 
     if (answer == result){
         numOfCorrectAnsws++
-        alert("Správně");
+        alert("That's correct");
     }
     else{
-        alert("Špatně");
+        alert(`That's wrong, the right answer is: ${result}`);
     }
 
     evaluateButton.disabled = true;
     continueButton.disabled = false;
     inputAnswerElement.disabled = true;
+
+    if(currentNumOfQuestions >= numberOfQuestions){
+        alert(`Quiz completed! \nNumber of correct answers: ${numOfCorrectAnsws}/${numberOfQuestions}`);
+        continueButton.disabled = true;
+    }
+
+    currentNumOfQuestions++;
 }
-    
+
+resetButton.onclick = function(){
+    location.reload();
+}
