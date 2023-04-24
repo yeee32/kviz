@@ -10,15 +10,15 @@ let generateRandomNumber = function(){
     switch(mathOperators[i]){
         case "+":
             randomNumberAnswer = num1 + num2;
-        break
+        break;
         case "-":
             randomNumberAnswer = num1 - num2;
-        break
+        break;
     }
 
-    let quizQuestionText = `${num1} ${mathOperators[i]} ${num2} =`;
+    let quizQuestionText = `${num1} ${mathOperators[i]} ${num2}`;
     questionElement.innerText = quizQuestionText;
-    console.log(quizQuestionText,randomNumberAnswer);
+    console.log(quizQuestionText + " = " + randomNumberAnswer);
 
     return randomNumberAnswer;
 }
@@ -36,8 +36,7 @@ let currentNumOfQuestions = 1;
 let answer;
 let result;
 
-bodyElement.onload = function() 
-{
+bodyElement.onload = function(){
   startQuiz();
 }
 
@@ -55,16 +54,24 @@ continueButton.onclick = function(){
     evaluateButton.disabled = false;
 }
 
-evaluateButton.onclick = function(){
+function checkCorrectAnswer(){
     answer = inputAnswerElement.value;
  
     if (answer == result){
-        numOfCorrectAnsws++
+        numOfCorrectAnsws++;
         alert("That's correct");
+    }
+    else if (answer==""){
+        alert("Write an answer");
     }
     else{
         alert(`That's wrong, the right answer is: ${result}`);
     }
+}
+
+evaluateButton.onclick = function(){
+   
+    checkCorrectAnswer();
 
     evaluateButton.disabled = true;
     continueButton.disabled = false;
@@ -79,11 +86,12 @@ evaluateButton.onclick = function(){
 }
 
 resetButton.onclick = function(){
+    console.clear();
     result = generateRandomNumber();
     evaluateButton.disabled = false;
     continueButton.disabled = true;
     inputAnswerElement.disabled = false;
     numOfCorrectAnsws = 0;
-    currentNumOfQuestions = 1
+    currentNumOfQuestions = 1;
     inputAnswerElement.value = "";
 }
