@@ -6,6 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>kviz</title>
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+
 </head>
 <body id="bodyElement">
 
@@ -15,21 +27,22 @@
         </div>
 
         <div class="answerInputText">
-            <input type="text" id="answerInput" autocomplete="off">
+            <input type="number" id="answerInput" class="answerInput" autocomplete="off">
         </div>
         <br>
-        <div>
-            <button id="evaluate">Check</button>
+        <div id="buttons">
+        <div id="buttons-evaluate">
+                <button id="evaluate">Check</button>
+            </div>
+            <br>
+            <div id="buttons-continue">
+                <button id="continue">Next</button>
+            </div>
+            <br>
+            <div id="buttons-reset">
+                <button id="reset">Reset</button>
+            </div>
         </div>
-        <br>
-        <div>
-            <button id="continue">Next</button>
-        </div>
-        <br>
-        <div>
-            <button id="reset">Reset</button>
-        </div>
-
         <script src="script.js"></script>
     </div>
 </body>
