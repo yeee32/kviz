@@ -1,3 +1,10 @@
 #block{
     text-align: center;
 }
+
+#mathQuestion{
+    padding-top: 15%;
+    padding-bottom: 5%;
+    font-size: 450%;
+    text-align: center;
+}
