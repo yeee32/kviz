@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kviz</title>
+    <title>Math Quiz</title>
     <link rel="stylesheet" href="style.css">
 
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    
     <style>
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
@@ -22,27 +24,37 @@
 <body id="bodyElement">
 
     <div id="block">
+
+        <div id="questionCounterText">
+            Question: 
+            <div id="questionCounter">
+                
+            </div>
+        </div>
+        
         <div id="mathQuestion">
             
         </div>
+        <div id="input-and-buttons">
+            <div class="answerInputText">
+                <input type="number" id="answerInput" class="answerInput" autocomplete="off">
+            </div>
+            <br>
+            <div id="buttons">
+                <div id="buttons-evaluate">
+                    <button id="evaluate" class="button">Check</button>
+                </div>
+                <br>
+                <div id="buttons-continue">
+                    <button id="continue" class="button">Next</button>
+                </div>
+                <br>
+                <div id="buttons-reset">
+                    <button id="reset" class="button">Reset</button>
+                </div>
+            </div>
+        </div>
 
-        <div class="answerInputText">
-            <input type="number" id="answerInput" class="answerInput" autocomplete="off">
-        </div>
-        <br>
-        <div id="buttons">
-        <div id="buttons-evaluate">
-                <button id="evaluate">Check</button>
-            </div>
-            <br>
-            <div id="buttons-continue">
-                <button id="continue">Next</button>
-            </div>
-            <br>
-            <div id="buttons-reset">
-                <button id="reset">Reset</button>
-            </div>
-        </div>
         <script src="script.js"></script>
     </div>
 </body>
