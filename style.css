@@ -1,10 +1,107 @@
 #block{
     text-align: center;
+    margin: auto;
 }
 
 #mathQuestion{
-    padding-top: 15%;
-    padding-bottom: 5%;
-    font-size: 450%;
+    padding-top: 12rem;
+    padding-bottom: 2rem;
+    font-size: 6rem;
     text-align: center;
+    align-items: center;
+    margin-left: 38%;
+    margin-right: 38%;
+}
+
+#questionCounterText{
+    float: right;
+    margin: 5%;
+    margin-top: 3%;
+    text-align: center;
+    font-size: 180%;
+}
+
+#answerInput{
+    border: solid;
+    align-items: center;
+    border-color: black;
+    border-radius: 25px;
+    outline: none;
+    width: 200px;
+    height: 40px; 
+    text-align: center;
+    font-size: 150%;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    border-width: 3px;
+}
+
+#answerInput:hover:enabled{
+    border-color: #0D6986;
+}
+
+#answerInput:focus{
+    background-color: #8EC7D2;
+    border-color: #0D6986;
+}
+
+.button{
+    border: solid;
+    text-align: center;
+    border-color:black;
+    background-color: #bfbfbf;
+    font-size: 150%;
+    border-radius: 15px;
+    width: 150px;
+    height: 37.5px; 
+    border-width: 2.5px;
+}
+
+.button:disabled{
+    border-color:gray;
+    background-color: #bfbfbf;
+}
+
+.button:active:enabled{
+    background-color: #73a0a9;
+    border-color: #0a5066;
+}
+
+.button:hover:disabled{
+    border-color:gray;
+    background-color: #bfbfbf; 
+ }
+
+.button:hover{
+    background-color: #8EC7D2;
+    border-color: #0D6986;
+}
+
+#operator-buttons{
+    float: left;
+    margin: 2rem;
+}
+
+@media only screen and (max-width: 1150px){
+    #mathQuestion{
+        margin-left: 5rem;
+        margin-right: 5rem;
+    }
+}
+
+@media only screen and (max-width: 770px){
+    #mathQuestion{
+        margin-left: 3rem;
+        margin-right: 3rem;
+    }
+    .button{
+        width: 200px;
+        height: 50px;
+        font-size: 150%
+    }
+    #answerInput{
+        width: 250px;
+        height: 49px;
+        font-size: 160%;
+    }
 }
