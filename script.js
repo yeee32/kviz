@@ -52,42 +52,84 @@ let totalNumberOfQuestions;
 let currentNumOfQuestions;
 let userAnswer;
 let result;
+let timer;
 
 // ideas TODO:
-// 1. Create a main (start) menu
+// 1. Create a main (start) menu 
 // 2. Create an end menu
-// 3. Show what question were right and wrong
-// 4. Add a timer (Maybe)
-// 5. Make better popups
-// 6. Add the secret dino game (but probably not)
+// 3. Implement division (÷)
+// 4. Show what question were right and wrong
 
+// 5. Add a timer (Maybe) {kinda working?}*************
+
+// 6. Make better popups
+// 7. Continue and check with enter
+// 8. SFX (?)
+// 9. Add the secret dino game (but probably not)
 
 // loads the quiz
 bodyElement.onload = function(){
   startQuiz();
 }
+let seconds;
+let finalTime;
+function upTimer(){
+    seconds++
+    let addHour = Math.floor(seconds / 3600); 
+
+    if(addHour < 10){
+        addHour = "0" + addHour;
+    }
+
+    let addMinute = Math.floor((seconds - addHour * 3600) / 60);
+
+    if(addMinute < 10){
+        addMinute = "0" + addMinute;
+    }
+
+    let addSecond = seconds - (addHour * 3600 + addMinute * 60);
+
+    if(addSecond < 10){
+        addSecond = "0" + addSecond;
+    }
+
+    finalTime = [addHour + ":" + addMinute + ":" + addSecond];
+    document.getElementById("timer").innerText = finalTime;
+    
+    return finalTime;
+}
 
 const startQuiz = function(){
     console.clear();
+
+    seconds = 0;
     totalNumberOfQuestions = prompt("How many questions?");
 
+    if(totalNumberOfQuestions == null){
+        inputAnswerElement.disabled = true;
+        continueButton.disabled = true;
+        evaluateButton.disabled = true;
+        resetButton.disabled = false;
+        clearInterval(timer);
+        return null;
+    }
+    else{
+        numOfCorrectAnsws = 0;
+        inputAnswerElement.value = "";
+        continueButton.disabled = true;
+        evaluateButton.disabled = false
+        inputAnswerElement.disabled = false;
+        result = generateRandomQuestion();
+        currentNumOfQuestions = 1;
+        questionCounter.innerText = `${currentNumOfQuestions} / ${totalNumberOfQuestions}`; 
+        clearInterval(timer);
+        
+        timer = setInterval(upTimer, 1000);
+    }
     while(totalNumberOfQuestions == "" || isNaN(totalNumberOfQuestions) || totalNumberOfQuestions == 0){
         alert("Write how many questions do you want to answer!");
         totalNumberOfQuestions = prompt("How many questions?");
     }
-    if(totalNumberOfQuestions == null){
-        // Returns to main (start) menu
-        return;
-    }
-
-    numOfCorrectAnsws = 0;
-    inputAnswerElement.value = "";
-    continueButton.disabled = true;
-    evaluateButton.disabled = false
-    inputAnswerElement.disabled = false;
-    result = generateRandomQuestion();
-    currentNumOfQuestions = 1;
-    questionCounter.innerText = `${currentNumOfQuestions} / ${totalNumberOfQuestions}`;  
 }
 
 continueButton.onclick = function(){
@@ -131,12 +173,13 @@ evaluateButton.onclick = function(){
         inputAnswerElement.disabled = true;
     }
     if(currentNumOfQuestions >= totalNumberOfQuestions){
-        alert(`Quiz completed! \nNumber of correct answers: ${numOfCorrectAnsws}/${totalNumberOfQuestions}`);
+        alert(`Quiz completed! \nNumber of correct answers: ${numOfCorrectAnsws}/${totalNumberOfQuestions}\nFinal time: ${finalTime}`);
         continueButton.disabled = true;
+        clearInterval(timer);
     } 
 }
 
 // restarts the quiz
 resetButton.onclick = function(){ 
-    /*re*/startQuiz();
+    /*re*/startQuiz();  
 }
