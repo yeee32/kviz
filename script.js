@@ -6,12 +6,11 @@ const generateRandomQuestion = function(){
     let max = 100;  // highest generated number                
     let num1 = Math.floor(Math.random()*max+1); 
     let num2 = Math.floor(Math.random()*max+1);
-    let randomOperator;
     let quizQuestionText;
     
-    // × • · *
+    // × • · * 
     mathOperators = ["+","-","·"];
-    randomOperator = Math.floor(Math.random()*mathOperators.length);
+    const randomOperator = Math.floor(Math.random()*mathOperators.length);
     
     // calculates the answer
     switch(mathOperators[randomOperator]){
@@ -65,7 +64,6 @@ let timer;
 // 6. Make better popups
 // 7. Continue and check with enter
 // 8. SFX (?)
-// 9. Add the secret dino game (but probably not)
 
 // loads the quiz
 bodyElement.onload = function(){
@@ -93,7 +91,7 @@ function upTimer(){
         addSecond = "0" + addSecond;
     }
 
-    finalTime = [addHour + ":" + addMinute + ":" + addSecond];
+    finalTime = `${addHour}:${addMinute}:${addSecond}`;
     document.getElementById("timer").innerText = finalTime;
     
     return finalTime;
@@ -104,14 +102,18 @@ const startQuiz = function(){
 
     seconds = 0;
     totalNumberOfQuestions = prompt("How many questions?");
+    if (totalNumberOfQuestions == "" || isNaN(totalNumberOfQuestions) || totalNumberOfQuestions == 0) {
+        alert("Write how many questions do you want to answer!");
+        // totalNumberOfQuestions = prompt("How many questions?");
+        return startQuiz(); // call the function again to check the input again
+    }
 
-    if(totalNumberOfQuestions == null){
+    if(!totalNumberOfQuestions){ // no idea what this does ·-·
         inputAnswerElement.disabled = true;
         continueButton.disabled = true;
         evaluateButton.disabled = true;
         resetButton.disabled = false;
         clearInterval(timer);
-        return null;
     }
     else{
         numOfCorrectAnsws = 0;
@@ -125,10 +127,6 @@ const startQuiz = function(){
         clearInterval(timer);
         
         timer = setInterval(upTimer, 1000);
-    }
-    while(totalNumberOfQuestions == "" || isNaN(totalNumberOfQuestions) || totalNumberOfQuestions == 0){
-        alert("Write how many questions do you want to answer!");
-        totalNumberOfQuestions = prompt("How many questions?");
     }
 }
 
