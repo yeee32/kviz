@@ -142,6 +142,21 @@ continueButton.onclick = function(){
     questionCounter.innerText = `${currentNumOfQuestions} / ${totalNumberOfQuestions}`;
 }
 
+
+inputAnswerElement.addEventListener("keypress",function(event){
+    if(event.key === "Enter"){
+        event.preventDefault();
+        evaluateButton.click();
+    }
+})
+
+// inputAnswerElement.addEventListener("keypress",function(event){
+//     if(event.key === "Enter"){
+//         event.preventDefault();
+//         continueButton.click();
+//     }
+// })
+
 // this functions checks if the answer is correct
 const checkCorrectAnswer = function(){
     userAnswer = inputAnswerElement.value;
